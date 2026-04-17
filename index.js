@@ -114,3 +114,110 @@ function gameObject() {
         },
     };
 }
+// ==========================================
+// 3.1 Retrieve Player Information
+// ==========================================
+
+function numPointsScored(playerName) {
+  const game = gameObject();
+  for (const team of Object.values(game)) {
+    for (const [name, stats] of Object.entries(team.players)) {
+      if (name === playerName) {
+        return stats.points;
+      }
+    }
+  }
+}
+
+function shoeSize(playerName) {
+  const game = gameObject();
+  for (const team of Object.values(game)) {
+    for (const [name, stats] of Object.entries(team.players)) {
+      if (name === playerName) {
+        return stats.shoe;
+      }
+    }
+  }
+}
+
+
+// ==========================================
+// 3.2 Retrieve Team Information
+// ==========================================
+
+function teamColors(teamName) {
+  const game = gameObject();
+  for (const team of Object.values(game)) {
+    if (team.teamName === teamName) {
+      return team.colors;
+    }
+  }
+}
+
+function teamNames() {
+  const game = gameObject();
+  return Object.values(game).map(team => team.teamName);
+}
+
+
+// ==========================================
+// 3.3 Retrieve Player Numbers and Stats
+// ==========================================
+
+function playerNumbers(teamName) {
+  const game = gameObject();
+  for (const team of Object.values(game)) {
+    if (team.teamName === teamName) {
+      return Object.values(team.players).map(player => player.number);
+    }
+  }
+}
+
+function playerStats(playerName) {
+  const game = gameObject();
+  for (const team of Object.values(game)) {
+    for (const [name, stats] of Object.entries(team.players)) {
+      if (name === playerName) {
+        return stats;
+      }
+    }
+  }
+}
+
+
+// ==========================================
+// 3.4 Advanced Challenge
+// ==========================================
+
+function bigShoeRebounds() {
+  const game = gameObject();
+  let biggestShoe = 0;
+  let rebounds = 0;
+
+  // Loop through both teams
+  for (const team of Object.values(game)) {
+    // Loop through each player on the team
+    for (const player of Object.values(team.players)) {
+      // Check if current player's shoe is larger than the biggest we've seen
+      if (player.shoe > biggestShoe) {
+        biggestShoe = player.shoe;
+        rebounds = player.rebounds;
+      }
+    }
+  }
+  
+  return rebounds;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    gameObject,
+    numPointsScored,
+    shoeSize,
+    teamColors,
+    teamNames,
+    playerNumbers,
+    playerStats,
+    bigShoeRebounds
+  }
+}

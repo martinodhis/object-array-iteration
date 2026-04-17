@@ -1,3 +1,15 @@
+const chai = require('chai');
+const expect = chai.expect;
+const {
+  numPointsScored,
+  shoeSize,
+  teamColors,
+  teamNames,
+  playerNumbers,
+  playerStats,
+  bigShoeRebounds
+} = require('../index.js');
+
 describe('Basketball Stats', function () {
   
   describe('numPointsScored', function () {
